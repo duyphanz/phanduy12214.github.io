@@ -51,8 +51,8 @@ function playKiss(id) {
 function playGame(id) {
     // text.innerHTML = 'Hahahahhaaaa'
     _score.innerHTML = ++score + ' Điểm'
-    var punch = document.getElementById('myPunch')
-    punch.play()
+    // var punch = document.getElementById('myPunch')
+    // punch.play()
 
 }
 

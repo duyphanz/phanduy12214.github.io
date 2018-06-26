@@ -42,8 +42,8 @@ function playSong() {
 
 function playKiss(id) {
     // text.innerHTML = 'Kissing you Muahhhhhh'
-    var kiss = document.getElementById('myKiss')
-    kiss.play()
+    // var kiss = document.getElementById('myKiss')
+    // kiss.play()
     console.log(speaking(id))
     responsiveVoice.speak(speaking(id), "Vietnamese Male");
 }

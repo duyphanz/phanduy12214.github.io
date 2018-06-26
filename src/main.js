@@ -31,15 +31,9 @@ function playSong() {
     responsiveVoice.speak('Quẩy lên la la la', "Vietnamese Male", {volume: 1});
     text1.innerHTML = "Đấm vào mặt đủ 150 điểm liên hệ nhận quà"
     var song = document.getElementById('mySong')
+    song.volume = 0.5
     song.play()
-    // if (isPlaying) {
-    //     song.pause()
-    //     isPlaying = !isPlaying
-    // } else {
-    //     song.play()
-    //     isPlaying = !isPlaying
-    // }
-    
+   
     for(let i = 1; i < 6; i++){
         let faceId = 'img' + i
         let face = document.getElementById(faceId)
@@ -51,6 +45,9 @@ function playSong() {
     if(!myInterval){
         myInterval = setInterval(() => {
             showFace()
+            let temp = ' [ Còn ' +  timeRemaining + ' giây ]'
+            text.innerHTML = 'Quẩy lên la la la' + temp
+            timeRemaining -= 2
         }, 2000)
     }
 
@@ -59,6 +56,7 @@ function playSong() {
 function playKiss(id) {
     text.innerHTML = '[' + speaking(id) + ']'
     var kiss = document.getElementById('myKiss')
+    
     kiss.play()
     responsiveVoice.speak(speaking(id), "Vietnamese Male", {volume: 1});
     
@@ -67,7 +65,7 @@ function playKiss(id) {
 
 function playGame() {
     // text.innerHTML = 'Hahahahhaaaa'
-    _score.innerHTML = ++score 
+    _score.innerHTML = ++score + '/150'
 
     _score.className = "animated rubberBand infinite"
     var punch = document.getElementById('myPunch')

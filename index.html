@@ -77,6 +77,7 @@
     var faceId = 0;
     var myInterval;
     var score = 0
+    var timeRemaining = 40
     var text = document.getElementById('text')
     var text1 = document.getElementById('text1')
     var _score = document.getElementById('score')
@@ -86,17 +87,14 @@
             var content = document.getElementById('container')
             content.innerHTML = "Không hỗ trợ trên di động nha bạn ei"
         } else {
-            myInterval = setInterval(() => {
-                showFace()
-            }, 2000)
+            // myInterval = setInterval(() => {
+            //     showFace()
+            // }, 2000)
             // responsiveVoice.speak('Đấm bánh sinh nhật đê bạn ơi', "Vietnamese Male", {volume: 1});
             text.innerHTML = 'Đấm bánh sinh nhật đê bạn ơi ...'
             text.className = "animated jackInTheBox"
 
         }
-
-
-
 
     }
     var mySong = document.getElementById('mySong')
@@ -108,12 +106,14 @@
             text1.innerHTML = "Đù, ghê ta :)"
         }else {
             text1.innerHTML = rs[getRandom()]
+            _score.style.color = 'red'
         }
 
         score = 0
         _score.className = "animated jackInTheBox"
         showAllFace()
         isPlaying = false
+        timeRemaining = 40
     }
 </script>
 

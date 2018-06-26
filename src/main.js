@@ -65,6 +65,7 @@ function playKiss(id) {
 
 function playGame() {
     // text.innerHTML = 'Hahahahhaaaa'
+    _score.style.color = 'blue'
     _score.innerHTML = ++score + '/150'
 
     _score.className = "animated rubberBand infinite"

@@ -21,46 +21,49 @@
         <source src="./common/audio/punch.mp3" type="audio/mp3">
     </audio>
 
-    <audio autoplay id="mySong">
+    <audio autoplay id="mySong" >
         <source src="./common/audio/song.mp3" type="audio/mp3">
     </audio>
     <!-- birthday song background -->
+    <div class="container" id="container" style="width: 750px; margin-top: 20px">
+        <table class="table table-condensed table-borderless">
+            <tr>
+                <th class="w-25">
+                    <img class="animated rubberBand" id="img1" class="img-fluid" src="./common/img/1.PNG" hidden>
+                </th>
+                <th class="w-25">
+                    <img class="animated rubberBand" id="img2" class="img-fluid" src="./common/img/2.PNG" hidden>
+                </th>
+                <th class="w-25">
+                    <img class="animated rubberBand" id="img3" class="img-fluid" src="./common/img/3.PNG" hidden>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img class="animated rubberBand" id="img4" class="img-fluid" src="./common/img/4.PNG" hidden>
+
+                </td>
+                <td>
+                    <img class="img-fluid" src="https://media.giphy.com/media/ZWRq3t3NDdEtO/giphy.gif" onclick="playSong()">
+
+                </td>
+                <td>
+                    <img class="animated rubberBand" id="img5" class="img-fluid" src="./common/img/5.PNG" hidden>
+                </td>
+            </tr>
+            <tr>
+
+                <td colspan="3">
+                    <div id="text" style="color: blueviolet; font-weight: bold"></div>
+                    <div id="score" style="color: blue; font-weight: bold; font-size: 300% ">0 </div>
+                    <div id="text1" style="color: blueviolet; font-weight: bold"></div>
+                </td>
+
+            </tr>
+        </table>
+    </div>
 
 
-    <table class="table table-condensed table-borderless">
-        <tr>
-            <th class="w-25">
-                <img class="animated rubberBand" id="img1" class="img-fluid" src="./common/img/1.JPG" hidden>
-            </th>
-            <th class="w-25">
-                <img class="animated rubberBand" id="img2" class="img-fluid" src="./common/img/2.JPG" hidden>
-            </th>
-            <th class="w-25">
-                <img class="animated rubberBand" id="img3" class="img-fluid" src="./common/img/3.JPG" hidden>
-            </th>
-        </tr>
-        <tr>
-            <td>
-                <img class="animated rubberBand" id="img4" class="img-fluid" src="./common/img/4.JPG" hidden>
-
-            </td>
-            <td>
-                <img class="img-fluid" src="https://media.giphy.com/media/ZWRq3t3NDdEtO/giphy.gif" onclick="playSong()">
-
-            </td>
-            <td>
-                <img class="animated rubberBand" id="img5" class="img-fluid" src="./common/img/5.JPG" hidden>
-            </td>
-        </tr>
-        <tr>
-            
-            <td colspan="3">
-                <div id="text" style="color: blueviolet; font-weight: bold">Hello</div>
-                <div id="score" style="color: blue; font-weight: bold ">0 Điểm</div>
-            </td>
-            
-        </tr>
-    </table>
 
 
 
@@ -74,17 +77,39 @@
     var myInterval;
     var score = 0
     var text = document.getElementById('text')
+    var text1 = document.getElementById('text1')
     var _score = document.getElementById('score')
     window.onload = function () {
-        myInterval = setInterval(() => {
-            showFace()
-        }, 2000)
-        text.innerHTML = 'Đấm bánh sinh nhật đê bạn ơi ...'
-        text.className = "animated jackInTheBox"
+
+        if (window.innerWidth <= 800 && window.innerHeight <= 600) {
+            var content = document.getElementById('container')
+            content.innerHTML = "Không hỗ trợ trên di động nha bạn ei"
+        } else {
+            myInterval = setInterval(() => {
+                showFace()
+            }, 2000)
+            // responsiveVoice.speak('Đấm bánh sinh nhật đê bạn ơi', "Vietnamese Male", {volume: 1});
+            text.innerHTML = 'Đấm bánh sinh nhật đê bạn ơi ...'
+            text.className = "animated jackInTheBox"
+
+        }
+
+
+
 
     }
     var mySong = document.getElementById('mySong')
     mySong.onended = () => {
+        clearInterval(myInterval)
+        myInterval = null
+        
+        if(score >= 150) {
+            text1.innerHTML = "Đù, ghê ta :)"
+        }else {
+            text1.innerHTML = rs[getRandom()]
+        }
+
+        score = 0
         _score.className = "animated jackInTheBox"
         showAllFace()
         isPlaying = false

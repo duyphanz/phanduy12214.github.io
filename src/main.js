@@ -1,11 +1,21 @@
 var speak = [
-    'Chào bạn',
-    'Bạn gì ơi',
-    'Đi đâu đó',
-    'Sao không trả lời',
+    'Chúc Như sống lâu nghìn tuổi',
+    'Mong Như mau thành chính quả',
+    'Chúc mày luôn vui vẻ và xinh đẹp nha mãi yêu',
+    'Chưa đủ điểm thì đừng đòi quà',
     'Thôi chào nha'
 ];
 
+var rs = [
+    'Đen thôi, đỏ quên đi -_-',
+    'Hay là thử thêm phát nữa ta?',
+    'Trò này ez, tại bố không thích nhận quà thôi!',
+    'Click banh chuột mà không win, really?'
+]
+
+function getRandom() {
+    return Math.floor(Math.random()*4)
+}
 
 function getFaceId(){
     if(faceId === 5) {
@@ -15,20 +25,20 @@ function getFaceId(){
 }
 
 function playSong() {
-    score = 0
-    text.innerHTML = 
-    `Quẩy lên la la la
-    (Bắt đầu đấm vào mặt để tính điểm)
-    `
     
+    text.innerHTML = 'Quẩy lên la la la'
+    
+    responsiveVoice.speak('Quẩy lên la la la', "Vietnamese Male", {volume: 1});
+    text1.innerHTML = "Đấm vào mặt đủ 150 điểm liên hệ nhận quà"
     var song = document.getElementById('mySong')
-    if (isPlaying) {
-        song.pause()
-        isPlaying = !isPlaying
-    } else {
-        song.play()
-        isPlaying = !isPlaying
-    }
+    song.play()
+    // if (isPlaying) {
+    //     song.pause()
+    //     isPlaying = !isPlaying
+    // } else {
+    //     song.play()
+    //     isPlaying = !isPlaying
+    // }
     
     for(let i = 1; i < 6; i++){
         let faceId = 'img' + i
@@ -38,21 +48,30 @@ function playSong() {
         }
     }
 
+    if(!myInterval){
+        myInterval = setInterval(() => {
+            showFace()
+        }, 2000)
+    }
+
 }
 
 function playKiss(id) {
-    // text.innerHTML = 'Kissing you Muahhhhhh'
-    // var kiss = document.getElementById('myKiss')
-    // kiss.play()
-    console.log(speaking(id))
-    responsiveVoice.speak(speaking(id), "Vietnamese Male");
+    text.innerHTML = '[' + speaking(id) + ']'
+    var kiss = document.getElementById('myKiss')
+    kiss.play()
+    responsiveVoice.speak(speaking(id), "Vietnamese Male", {volume: 1});
+    
+    
 }
 
-function playGame(id) {
+function playGame() {
     // text.innerHTML = 'Hahahahhaaaa'
-    _score.innerHTML = ++score + ' Điểm'
-    // var punch = document.getElementById('myPunch')
-    // punch.play()
+    _score.innerHTML = ++score 
+
+    _score.className = "animated rubberBand infinite"
+    var punch = document.getElementById('myPunch')
+    punch.play()
 
 }
 
@@ -106,9 +125,10 @@ function showFace() {
 }
 
 function showAllFace() {
-    text.innerHTML = 'Đấm vào mặt để nhận quà nhé!'
+    text.innerHTML = 'Đấm tiếp vào mặt để nhận lời chúc nhé!'
+    responsiveVoice.speak('Đấm tiếp vào mặt để nhận lời chúc nhé', "Vietnamese Male", {volume: 1});
  
-    clearInterval(myInterval)
+    
     for(let i = 1; i < 6; i++){
         let faceId = 'img' + i
         let face = document.getElementById(faceId)

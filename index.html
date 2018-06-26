@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./common/css/animate.css">
+    <link rel="stylesheet" href="./common/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Happy Birthday!!!</title>
+</head>
+
+<body>
+
+    <audio id="myKiss">
+        <source src="./common/audio/kissing.mp3" type="audio/mp3">
+    </audio>
+    <audio id="myPunch">
+        <source src="./common/audio/punch.mp3" type="audio/mp3">
+    </audio>
+
+    <audio autoplay id="mySong">
+        <source src="./common/audio/song.mp3" type="audio/mp3">
+    </audio>
+    <!-- birthday song background -->
+
+
+    <table class="table table-condensed table-borderless">
+        <tr>
+            <th class="w-25">
+                <img class="animated rubberBand" id="img1" class="img-fluid" src="./common/img/1.JPG" hidden>
+            </th>
+            <th class="w-25">
+                <img class="animated rubberBand" id="img2" class="img-fluid" src="./common/img/2.JPG" hidden>
+            </th>
+            <th class="w-25">
+                <img class="animated rubberBand" id="img3" class="img-fluid" src="./common/img/3.JPG" hidden>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <img class="animated rubberBand" id="img4" class="img-fluid" src="./common/img/4.JPG" hidden>
+
+            </td>
+            <td>
+                <img class="img-fluid" src="https://media.giphy.com/media/ZWRq3t3NDdEtO/giphy.gif" onclick="playSong()">
+
+            </td>
+            <td>
+                <img class="animated rubberBand" id="img5" class="img-fluid" src="./common/img/5.JPG" hidden>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div id="text" style="color: blueviolet; font-weight: bold">Hello</div>
+                <div id="score" style="color: blue; font-weight: bold ">0 Điểm</div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+
+</body>
+
+<script>
+    var isPlaying = false; //Toggle playing song
+    var faceId = 0;
+    var myInterval;
+    var score = 0
+    var text = document.getElementById('text')
+    var _score = document.getElementById('score')
+    window.onload = function () {
+        myInterval = setInterval(() => {
+            showFace()
+        }, 2000)
+        text.innerHTML = 'Đấm bánh sinh nhật đê bạn ơi ... '
+        text.className = "animated jackInTheBox"
+
+    }
+    var mySong = document.getElementById('mySong')
+    mySong.onended = () => {
+        _score.className = "animated jackInTheBox"
+        showAllFace()
+        isPlaying = false
+    }
+</script>
+
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+<script src="./src/main.js"></script>
+
+</html>
